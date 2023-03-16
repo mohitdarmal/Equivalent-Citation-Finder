@@ -37,22 +37,20 @@ const Welcome = ({navigation}) => {
 
   const getSuggestions = useCallback(async q => {
     const filterToken = q.toLowerCase()
-    console.log('typing', q)
+    console.log('getSuggestions', q)
     if (typeof q !== 'string' || q.length < 3) {
       setSuggestionsList(null)
       return
     }
     setLoading(true)
-    const response = await fetch('https://spotlawapp.com/Admin/json/getcitation.php')
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts')
     const items = await response.json()
     const suggestions = items
-    
-      .filter(item => item.toLowerCase().includes(filterToken))
-      .map((item, i) => ({title:item}))
-     /*  .map(item => ({
+      .filter(item => item.title.toLowerCase().includes(filterToken))
+      .map(item => ({
         id: item.id,
-        title: item,
-      })) */
+        title: item.title,
+      }))
     setSuggestionsList(suggestions)
     setLoading(false)
   }, [])
@@ -86,7 +84,7 @@ const Welcome = ({navigation}) => {
       })
     }
 
- 
+console.log(selectedItem, "Asdfsdf")
     
   const getSymbol = () => {
     axios.get(`${NavigationStrings.BASE_URL}getSymbols.php`, {
@@ -127,10 +125,10 @@ const themeContainerStyle =
             {/*  */}   
 
             <View
-        // style={[{ flex: 1, flexDirection: 'row', alignItems: 'center' },
-        //   Platform.select({ ios: { zIndex: 1 } }),
-        // ]}
-        >
+        style={[
+          { flex: 1, flexDirection: 'row', alignItems: 'center' },
+          Platform.select({ ios: { zIndex: 1 } }),
+        ]}>
         <AutocompleteDropdown
           ref={searchRef}
           controller={controller => {
@@ -179,7 +177,7 @@ const themeContainerStyle =
           ChevronIconComponent={<Feather name="chevron-down" size={20} color="#fff" />}
           ClearIconComponent={<Feather name="x-circle" size={18} color="#fff" />}
           inputHeight={50}
-          showChevron={true}
+          showChevron={false}
           closeOnBlur={false}
           //  showClear={false}
         />

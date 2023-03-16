@@ -68,12 +68,12 @@ const Style = StyleSheet.create({
         alignItems:'center'
     },
     menuIcon:{
-        // color : '#01203F'
-        color:'#fff'
+        color : '#01203F'
+        // color:'#fff'
     },
     cstmTitle:{
-        // color:'#01203F',
-        color:'#fff',
+        color:'#01203F',
+        // color:'#fff',
         fontSize:22,
         fontWeight:'600'
     }

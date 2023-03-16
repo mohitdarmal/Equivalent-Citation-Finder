@@ -10,7 +10,7 @@ const Styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 30,
         // color:'#01203F',
-        color: '#ffffff',
+        color: '#08113f',
         textAlign: 'center'
     },
 
@@ -56,7 +56,7 @@ const Styles = StyleSheet.create({
         width: '100%'
     },
     loginBtn: {
-        backgroundColor: '#466362',
+        backgroundColor: '#b2752a',
         marginTop: 25,
         color: '#fff',
         padding: 15,
@@ -75,8 +75,8 @@ const Styles = StyleSheet.create({
         width: '100%'
     },
     forgetPasswordBtn: {
-        // color: '#01203F',
-        color: '#fff'
+        color: '#01203F',
+        // color: '#fff'
     },
     loginGoogleBtnContainer: {
         width: '100%',
@@ -95,7 +95,7 @@ const Styles = StyleSheet.create({
         justifyContent: 'center'
     },
     alreadyAcTxt:{
-        color:'#fff'
+        color:'#888'
     },
     alreadyAccount: {
         flexDirection: 'row',
@@ -108,8 +108,9 @@ const Styles = StyleSheet.create({
         fontSize: 18
     },
     registerText: {
-        // color: '#466362'
-        color:'#ffffff90'
+        color: '#466362',
+        fontWeight:'bold'
+        // color:'#ffffff90'
     },
 
 })

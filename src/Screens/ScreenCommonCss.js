@@ -33,7 +33,7 @@ const CommonStyle = StyleSheet.create({
     // Light Dark css
     lightContainer: {
         // backgroundColor: '#F3F5F9',
-        backgroundColor:'#041851',
+        backgroundColor:'#F3F5F9',
       },
       lightThemeText: {
           color: '#242c40',

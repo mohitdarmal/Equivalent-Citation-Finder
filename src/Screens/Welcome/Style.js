@@ -77,7 +77,14 @@ const Style = StyleSheet.create({
         paddingHorizontal: 12,
         fontSize:20
     },
-
+    flatList:{
+        paddingLeft: 15, 
+        marginTop:15, 
+        paddingBottom:15,
+        fontSize: 20,
+        borderBottomColor: '#26a69a',
+        borderBottomWidth:1
+    }
 })
 
 export default Style;
