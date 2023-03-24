@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef, useCallback} from "react";
 import {Text, Button, View, FlatList, ScrollView, Image, TextInput, Switch, TouchableOpacity, useColorScheme, Dimensions} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import HTMLView from 'react-native-htmlview';
 import Feather from "react-native-vector-icons/Feather";
 import NavigationStrings from "../../Constant/NavigationStrings";
 import HeaderComp from "../../Components/HeaderComp";
@@ -19,11 +19,11 @@ import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown';
 const Welcome = ({navigation}) => {
   const isUserID = useSelector((state) => state.isSignIn.token);
  
-  const [searchValue, setSearcValue] = useState();
+  const [proceedData, setProceedData] = useState();
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [symbol, setSymbol] = useState();
-  const {height, width} = Dimensions.get('window');
+ 
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef();
 
@@ -65,7 +65,7 @@ const Welcome = ({navigation}) => {
 
     useEffect(() => {
       reAuth()
-      getSymbol()
+      getJudgement()
     }, [])
 
     const reAuth = () => {
@@ -85,19 +85,12 @@ const Welcome = ({navigation}) => {
          
       })
     }
-
  
     
-  const getSymbol = () => {
-    axios.get(`${NavigationStrings.BASE_URL}getSymbols.php`, {
-      params : {userRole:"user"}
-    }).then((res) => {
-      if(res.data.status == true){
-        setSymbol(res.data.data);
-      }
-      else{
-        alert(res.data.message);
-      }
+  const getJudgement = () => {
+    axios.get(`https://spotlawapp.com/Admin/json/getjudgement.php?apRe=${selectedItem}`)
+    .then((res) => {
+      setProceedData(res.data);
     })
   }
 
@@ -119,8 +112,8 @@ const themeContainerStyle =
     navigation.navigate(NavigationStrings.WELCOME, {title:'Welcome Screen'});
   }
     return(
-        <View style={[themeContainerStyle, {flex:1}]}>
-            <HeaderComp title="Equivalent Citation Finder"/>
+        <View style={[themeContainerStyle, {flex:1, paddingHorizontal:30}]}>
+            <HeaderComp title="ECf"/>
 
            
            
@@ -128,7 +121,7 @@ const themeContainerStyle =
 
             <View
         // style={[{ flex: 1, flexDirection: 'row', alignItems: 'center' },
-        //   Platform.select({ ios: { zIndex: 1 } }),
+      
         // ]}
         >
         <AutocompleteDropdown
@@ -151,14 +144,13 @@ const themeContainerStyle =
           loading={loading}
           useFilter={false} // set false to prevent rerender twice
           textInputProps={{
-            placeholder: 'Type 3+ letters (dolo...)',
+            placeholder: 'Type 3+ letters',
             autoCorrect: false,
             autoCapitalize: 'none',
             style: {
-              borderRadius: 25,
-              backgroundColor: '#383b42',
-              color: '#fff',
-              paddingLeft: 18,
+              borderRadius: 25,             
+              color: '#444',
+              paddingLeft: 25,
             },
           }}
           rightButtonsContainerStyle={{
@@ -168,17 +160,22 @@ const themeContainerStyle =
             alignSelf: 'center',
           }}
           inputContainerStyle={{
-            backgroundColor: '#383b42',
-            borderRadius: 25,
+            borderWidth:1,
+            borderColor:'#aaaaaa',
+            // backgroundColor: '#383b42',
+            marginBottom:20,
+            borderRadius: 50,
+            color:'redd'
           }}
+          
           suggestionsListContainerStyle={{
-            backgroundColor: '#383b42',
+            backgroundColor: '#383b42',           
           }}
           containerStyle={{ flexGrow: 1, flexShrink: 1 }}
-          renderItem={(item, text) => <Text style={{ color: '#fff', padding: 15 }}>{item.title}</Text>}
-          ChevronIconComponent={<Feather name="chevron-down" size={20} color="#fff" />}
-          ClearIconComponent={<Feather name="x-circle" size={18} color="#fff" />}
-          inputHeight={50}
+          renderItem={(item, text) => <Text style={{ color: '#f2f2f2', lineHeight:22, padding: 15 }}>{item.title}</Text>}
+          ChevronIconComponent={<Feather name="chevron-down" size={20} color="#444" style={{marginRight:10}} />}
+          ClearIconComponent={<Feather name="x-circle" size={18} color="red" style={{marginRight:10}} />}
+          inputHeight={60}
           showChevron={true}
           closeOnBlur={false}
           //  showClear={false}
@@ -186,8 +183,22 @@ const themeContainerStyle =
         <View style={{ width: 10 }} />
         {/* <Button style={{ flexGrow: 0 }} title="Toggle" onPress={() => dropdownController.current.toggle()} /> */}
       </View>
-      <Text style={{ color: '#668', fontSize: 13 }}>Selected item id: {JSON.stringify(selectedItem)}</Text>     
+      {/* <Text style={{ color: '#668', fontSize: 13 }}>Selected item id: {JSON.stringify(selectedItem)}</Text>      */}
           
+          <TouchableOpacity style={{marginBottom:30}} onPress={getJudgement}>
+            <Text style={{  backgroundColor: '#b2752a',
+        color: '#fff',
+        padding: 15,
+        fontSize: 18,
+        textAlign: 'center',
+        borderRadius:100,
+        fontWeight:"bold"
+       }}>Proceed</Text>
+          </TouchableOpacity>
+ 
+          <HTMLView           
+            value={proceedData}                  
+           />   
         </View>
     )
 }

@@ -84,7 +84,12 @@ const Style = StyleSheet.create({
         fontSize: 20,
         borderBottomColor: '#26a69a',
         borderBottomWidth:1
-    }
+    },
+    a: {
+        fontWeight: 'bold',
+        fontSize:20,
+        color: '#FF3366', // make links coloured pink
+      },
 })
 
 export default Style;

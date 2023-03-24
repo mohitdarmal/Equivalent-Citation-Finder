@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "theremworld",
-    "slug": "theremworld",
+    "name": "equivalent-citation-finder",
+    "slug": "equivalent-citation-finder",
     "scheme":"com.theremworld.theremworld",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,14 +14,21 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/de525362-839a-4681-9c41-79560a9477b3"
+      "url": "https://u.expo.dev/e0ace4e5-1059-4a18-a6da-d002e6fbe698"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.theremworld.theremworld"
+      "bundleIdentifier": "com.theremworld.theremworld",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allows App to use location services in the foreground and background.",
+        "NSFaceIDUsageDescription": "Allows App to use Face ID for a simpler sign in.",
+        "NSPhotoLibraryUsageDescription":"Photo Library Access",
+        "NSSpeechRecognitionUsageDescription": "Speech Recognition Description"
+      }
     },
     "android": {
       "useNextNotificationsApi": true,      
@@ -52,7 +59,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "de525362-839a-4681-9c41-79560a9477b3"
+        "projectId": "e0ace4e5-1059-4a18-a6da-d002e6fbe698"
       }
     },
     "runtimeVersion": {
